@@ -1,38 +1,25 @@
 <template>
-  <div>
-    <div>
-      <div class="itemDetails">{{details.id}}: {{details.status}}</div>
-      <div class="itemButton">
-        <button @click="showDetails">Show details</button>
-      </div>
-    </div>
-  </div>
+    <li
+            class="list-group-item"
+            style="cursor: pointer"
+            @click="serverSelected">
+        Server #{{ server.id }}
+    </li>
 </template>
 
 <script>
-export default {
-  props: {
-    details: {
-      type: Object,
-      required: true
+    import { serverBus } from '../../main';
+
+    export default {
+        props: ['server'],
+        methods: {
+            serverSelected() {
+                serverBus.$emit('serverSelected', this.server);
+            }
+        }
     }
-  },
-  methods: {
-    showDetails: function(event) {
-      this.$emit("showDetailsEvent", this.details);
-    }
-  }
-};
 </script>
 
-<style scoped>
-.itemDetails {
-  display: inline-block;
-  width: 200px;
-  border: solid 1px gray;
-}
-.itemButton {
-  display: inline-block;
-  width: 100px;
-}
+<style>
+
 </style>

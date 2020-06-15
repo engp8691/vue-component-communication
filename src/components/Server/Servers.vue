@@ -1,20 +1,17 @@
 <template>
   <div class="col-xs-12 col-sm-6">
     <ul class="list-group">
-      <li class="list-group-item" v-for="server in servers" :key="server.id">
-        <app-server :details="server" @showDetailsEvent="responseShowEvent"/>
-      </li>
+      <app-server v-for="server in servers" :server="server" :key="server.id"></app-server>
     </ul>
   </div>
 </template>
 
 <script>
-import Server from './Server.vue';
+import Server from "./Server.vue";
 
 export default {
   data: function() {
     return {
-      clickServer: {},
       servers: [
         { id: 1, status: "Normal" },
         { id: 2, status: "Critical" },
@@ -24,14 +21,10 @@ export default {
     };
   },
   components: {
-    "app-server": Server,
-  },
-  methods: {
-    responseShowEvent: function(event){
-      this.$emit("showDetailsEventRelay", event);
-    }
+    appServer: Server
   }
 };
 </script>
+
 <style>
 </style>
