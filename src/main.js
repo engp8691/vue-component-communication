@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import App from './App.vue'
 
-export const serverBus = new Vue();
+Vue.filter('calculateLength', (value) => {
+    return value + ' (' + value.length + ')';
+});
 
 new Vue({
   el: '#app',
