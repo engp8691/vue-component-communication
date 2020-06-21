@@ -5,17 +5,20 @@
                 <h1>Filters & Mixins</h1>
                 <!-- Exercise 1) -->
                 <!-- Build a local Filter which reverses the Text it is applied on -->
-                <p>{{ firstText | reverse }}</p>
+                <p>{{ myName | reverse | capitalize }}</p>
+                <p>{{ myName | capitalize | reverse }}</p>
 
                 <!-- Exercise 2 -->
                 <!-- Build a global Filter which counts the length of a word and it appends it -->
                 <!-- Like this: "Test" => Gets Filtered to => "Test (4)" -->
-                <p>{{ secondText | calculateLength }}</p>
+                <hr/>
+                <p>{{ myName | stringLength }}</p>
 
                 <!-- Exercise 3 -->
                 <!-- Do the same as in Exercises 1 & 2, now with Computed Properties -->
+                <hr/>
                 <p>{{ reversed }}</p>
-                <p>{{ lengthAware }}</p>
+                <p>{{ lengthMixin }}</p>
 
                 <!-- Exercise 4 -->
                 <!-- Share the Computed Property rebuilding Exercise 2 via a Mixin -->
@@ -25,14 +28,13 @@
 </template>
 
 <script>
-    import { lengthAwareMixin } from './lengthAwareMixin';
+    import { stringLengthByMixin } from './BostonMixin';
 
     export default {
-        mixins: [lengthAwareMixin],
+        mixins: [stringLengthByMixin],
         data() {
             return {
-                firstText: 'Some Text',
-                secondText: 'Maximilian'
+                myName: 'Yonglin Lee',
             }
         },
         filters: {
@@ -42,10 +44,10 @@
         },
         computed: {
             reversed() {
-                return this.firstText.split("").reverse().join("");
+                return this.myName.split("").reverse().join("");
             }
         }
-    }
+    }   
 </script>
 
 <style>
